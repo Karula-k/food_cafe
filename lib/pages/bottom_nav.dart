@@ -17,29 +17,40 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final pages = const [HomePage(), DinePage(), FavouritePage(), SettingsPage()];
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: OutlinedButton(
-            style: ButtonStyle(
-                elevation: MaterialStateProperty.all(0),
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                shape: MaterialStateProperty.all(const CircleBorder())),
-            onPressed: () {},
-            child: const Icon(
-              Icons.align_horizontal_left_outlined,
-              color: Colors.grey,
-            )),
-        actions: [
-          OutlinedButton(
+        titleSpacing: 0,
+        leading: Padding(
+          padding: EdgeInsets.only(left: 0.08 * size.width),
+          child: OutlinedButton(
               style: ButtonStyle(
+                  padding: MaterialStateProperty.all(EdgeInsets.zero),
                   elevation: MaterialStateProperty.all(0),
                   backgroundColor: MaterialStateProperty.all(Colors.white),
                   shape: MaterialStateProperty.all(const CircleBorder())),
               onPressed: () {},
-              child:
-                  const Icon(Icons.account_circle_sharp, color: Colors.grey)),
+              child: const Center(
+                child: Icon(
+                  Icons.align_horizontal_left_outlined,
+                  color: Colors.grey,
+                ),
+              )),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 0.08 * size.width),
+            child: OutlinedButton(
+                style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                    shape: MaterialStateProperty.all(const CircleBorder())),
+                onPressed: () {},
+                child:
+                    const Icon(Icons.account_circle_sharp, color: Colors.grey)),
+          ),
         ],
       ),
       body: pages[pageIndex],
@@ -50,10 +61,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
   AnimatedContainer customBottomNavigation(BuildContext context) {
     return AnimatedContainer(
       height: 90,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.black54,
-          borderRadius: const BorderRadius.all(Radius.circular(50))),
-      duration: Duration(seconds: 5),
+          borderRadius: BorderRadius.all(Radius.circular(50))),
+      duration: const Duration(seconds: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
